@@ -15,10 +15,11 @@ Since API access was prohibited in my work environment, I developed this tool to
 
 ## Features
 
-- Inventory collection
 - IP address summary
 - Hardware model detection
 - Software version detection
+- Uptime detection
+- Interface status detection
 - OSPF neighbor status
 - BGP peer status
 - Default route check
@@ -60,5 +61,4 @@ GUI application
 ## Future Improvements
 
 - Support more Cisco commands
-- Support Juniper devices
 - AI-powered log analysis using LangChain
