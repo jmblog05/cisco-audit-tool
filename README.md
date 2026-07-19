@@ -27,9 +27,12 @@ Since API access was prohibited in my work environment, I developed this tool to
 
 ## Environment
 
-Python 3.11
+Python 3.x
+
 Windows
+
 openpyxl
+
 tkinter
 
 ## How to use
@@ -41,11 +44,17 @@ tkinter
 ## Sample Output
 <img width="773" height="241" alt="result_open" src="https://github.com/user-attachments/assets/8d890410-cbe1-485a-a5fa-927c6e2ab702" />
 
+<img width="1248" height="578" alt="status_1" src="https://github.com/user-attachments/assets/2db55ca7-a26b-48b0-83b3-a095046e7510" />
+
+
 ## Technical Details
 
 Parsing CLI logs
+
 Regular expressions
+
 Excel generation
+
 GUI application
 
 ## Future Improvements
