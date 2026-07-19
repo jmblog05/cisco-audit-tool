@@ -3,28 +3,30 @@ Python tool for Cisco CLI log analysis and Excel report generation.
 
 ## Overview
 
-Cisco Audit Tool is a Python application that analyzes Cisco CLI log files and automatically generates Excel reports.
+Cisco Audit Tool is a Python application that parses Cisco CLI log files and automatically generates Excel reports for network inventory and health checks.
 
-This project was created to improve network operation efficiency in environments where API access is unavailable.
+The tool was developed to improve operational efficiency in environments where API access is unavailable.
 
 ## Why I created this tool
 
-Managing hundreds of network devices manually is time-consuming.
+This project was inspired by a real operational challenge.
 
-Since API access was prohibited in my work environment, I developed this tool to analyze CLI outputs and automatically generate inventory and status reports in Excel.
+In my work environment, network devices could not be accessed through APIs due to security restrictions. Collecting inventory and operational information manually from CLI outputs was time-consuming and error-prone.
+
+To solve this problem, I developed a Python-based tool that automatically parses CLI outputs and generates Excel reports.
 
 ## Features
 
-- IP address summary
-- Hardware model detection
-- Software version detection
-- Uptime detection
-- Interface status detection
-- OSPF neighbor status
-- BGP peer status
-- Default route check
-- NTP synchronization status
-- Excel report generation
+- Collect IP address information
+- Detect hardware models
+- Detect software versions
+- Detect uptime
+- Check interface status
+- Check OSPF neighbor status
+- Check BGP peer status
+- Check default routes
+- Check NTP synchronization
+- Generate Excel reports
 
 ## Environment
 
@@ -62,3 +64,10 @@ GUI application
 
 - Support more Cisco commands
 - AI-powered log analysis using LangChain
+
+
+## Author
+
+Created by jmblog05
+
+Feedback and suggestions are always welcome.
