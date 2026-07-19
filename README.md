@@ -49,22 +49,15 @@ tkinter
 
 <img width="1248" height="578" alt="status_1" src="https://github.com/user-attachments/assets/2db55ca7-a26b-48b0-83b3-a095046e7510" />
 
-
 ## Technical Details
 
-Parsing CLI logs
-
-Regular expressions
-
-Excel generation
-
-GUI application
+- Developed as a Windows GUI application using `tkinter`.
+- Distributed as a `.pyw` application so that no console window appears during execution, providing a cleaner user experience.
 
 ## Future Improvements
 
 - Support more Cisco commands
 - AI-powered log analysis using LangChain
-
 
 ## Author
 
