@@ -25,8 +25,31 @@ Since API access was prohibited in my work environment, I developed this tool to
 - NTP synchronization status
 - Excel report generation
 
-<img width="1182" height="289" alt="script_execed" src="https://github.com/user-attachments/assets/4ce2a72f-cce4-4b87-8aaa-5c410a27fc59" />
+## Environment
 
+Python 3.11
+Windows
+openpyxl
+tkinter
+
+## How to use
+1. Execute commands on Cisco routers.
+2. Save CLI logs.
+3. Select the log directory.
+4. Generate Excel report.
+
+## Sample Output
 <img width="773" height="241" alt="result_open" src="https://github.com/user-attachments/assets/8d890410-cbe1-485a-a5fa-927c6e2ab702" />
 
+## Technical Details
 
+Parsing CLI logs
+Regular expressions
+Excel generation
+GUI application
+
+## Future Improvements
+
+- Support more Cisco commands
+- Support Juniper devices
+- AI-powered log analysis using LangChain
