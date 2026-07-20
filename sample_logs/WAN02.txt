@@ -1,0 +1,272 @@
+term len 0
+WAN02#show version
+Cisco Internetwork Operating System Software 
+IOS (tm) 7200 Software (C7200-IS-M), Version 12.3(5a)B5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2005 by cisco Systems, Inc.
+Compiled Wed 11-May-05 14:06 by leccese
+Image text-base: 0x60008AF4, data-base: 0x61C58000
+
+ROM: ROMMON Emulation Microcode
+BOOTLDR: 7200 Software (C7200-IS-M), Version 12.3(5a)B5, RELEASE SOFTWARE (fc1)
+
+WAN02 uptime is 10 minutes
+System returned to ROM by unknown reload cause - suspect boot_data[BOOT_COUNT] 0x0, BOOT_COUNT 0, BOOTDATA 19
+System restarted at 12:47:17 UTC Sun Aug 24 2025
+System image file is "tftp://255.255.255.255/unknown"
+
+cisco 7206VXR (NPE400) processor (revision A) with 491520K/32768K bytes of memory.
+Processor board ID 4279256517
+R7000 CPU at 150MHz, Implementation 39, Rev 2.1, 256KB L2, 512KB L3 Cache
+6 slot VXR midplane, Version 2.1
+
+Last reset from power-on
+Bridging software.
+X.25 software, Version 3.0.0.
+
+PCI bus mb0_mb1 has 1100 bandwidth points
+PCI bus mb2 has 1100 bandwidth points
+WARNING: PCI bus mb0_mb1 Exceeds 600 bandwidth points
+WARNING: PCI bus mb2 Exceeds 600 bandwidth points
+
+4 FastEthernet/IEEE 802.3 interface(s)
+2 Gigabit Ethernet/IEEE 802.3 interface(s)
+2 ATM network interface(s)
+509K bytes of non-volatile configuration memory.
+
+8192K bytes of Flash internal SIMM (Sector size 256K).
+Configuration register is 0x2102
+
+WAN02#show run
+Building configuration...
+
+Current configuration : 2300 bytes
+!
+! Last configuration change at 12:53:27 UTC Sun Aug 24 2025
+! NVRAM config last updated at 12:54:38 UTC Sun Aug 24 2025
+!
+version 12.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname WAN02
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+ip subnet-zero
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+ip tcp synwait-time 5
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 5.5.5.5 255.255.255.255
+!
+interface FastEthernet0/0
+ description peer-link to WAN01
+ ip address 192.168.0.130 255.255.255.128
+ duplex full
+!
+interface ATM1/0
+ no ip address
+ shutdown
+ no atm ilmi-keepalive
+!
+interface ATM2/0
+ no ip address
+ shutdown
+ no atm ilmi-keepalive
+!
+interface FastEthernet3/0
+ description to_REMOETE01_Fa4_1
+ ip address 10.0.2.2 255.255.255.248
+ duplex full
+!
+interface FastEthernet4/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet4/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet5/0
+ description to_CORE01_Gig5_0
+ ip address 172.16.2.2 255.255.255.240
+ negotiation auto
+!
+interface GigabitEthernet6/0
+ description to_CORE02_Gig6_0
+ ip address 172.16.4.2 255.255.255.240
+ negotiation auto
+!
+router bgp 64513
+ no synchronization
+ bgp router-id 5.5.5.5
+ bgp log-neighbor-changes
+ redistribute connected
+ neighbor P2P peer-group
+ neighbor P2P remote-as 64512
+ neighbor P2P default-originate 
+ neighbor P2P route-map only_default out
+ neighbor 10.0.2.3 remote-as 64514
+ neighbor 172.16.2.1 peer-group P2P
+ neighbor 172.16.4.1 peer-group P2P
+ neighbor 192.168.0.129 remote-as 64513
+ no auto-summary
+!
+ip classless
+no ip http server
+!
+!
+!
+ip prefix-list ONLY_DEFAULT seq 5 permit 0.0.0.0/0
+no cdp log mismatch duplex
+!
+route-map only_default permit 10
+ match ip address prefix-list ONLY_DEFAULT
+!
+!
+!
+!
+!
+!
+gatekeeper
+ shutdown
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ transport preferred all
+ transport output all
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ transport preferred all
+ transport output all
+ stopbits 1
+line vty 0 4
+ login
+ transport preferred all
+ transport input all
+ transport output all
+!
+ntp master 1
+ntp peer 4.4.4.4 source Loopback0
+!
+!
+end
+
+WAN02#show ip int brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.0.130   YES NVRAM  up                    up      
+ATM1/0                     unassigned      YES NVRAM  administratively down down    
+ATM2/0                     unassigned      YES NVRAM  administratively down down    
+FastEthernet3/0            10.0.2.2        YES NVRAM  up                    up      
+FastEthernet4/0            unassigned      YES NVRAM  administratively down down    
+FastEthernet4/1            unassigned      YES NVRAM  administratively down down    
+GigabitEthernet5/0         172.16.2.2      YES NVRAM  up                    up      
+GigabitEthernet6/0         172.16.4.2      YES NVRAM  up                    up      
+Loopback0                  5.5.5.5         YES NVRAM  up                    up      
+WAN02#show cdp nei
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+REMOTE01         Fas 3/0            133          R        7206VXR   Fas 4/1
+CORE02           Gig 6/0            132          R        7206VXR   Gig 6/0
+CORE01           Gig 5/0            132          R        7206VXR   Gig 6/0
+WAN01            Fas 0/0            132          R        7206VXR   Fas 0/0
+WAN02#show ip ospf nei
+
+WAN02#show ip bgp summary
+BGP router identifier 5.5.5.5, local AS number 64513
+BGP table version is 25, main routing table version 25
+17 network entries using 1717 bytes of memory
+42 path entries using 2016 bytes of memory
+10 BGP path attribute entries using 600 bytes of memory
+2 BGP AS-PATH entries using 48 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 4381 total bytes of memory
+BGP activity 17/0 prefixes, 42/0 paths, scan interval 60 secs
+
+Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+10.0.2.3        4 64514      20      22       25    0    0 00:10:08        4
+172.16.2.1      4 64512      20      15       25    0    0 00:10:06       10
+172.16.4.1      4 64512      19      15       25    0    0 00:10:07       10
+192.168.0.129   4 64513      22      24       25    0    0 00:10:20       13
+WAN02#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     1.0.0.0/32 is subnetted, 1 subnets
+B       1.1.1.1 [20/0] via 172.16.4.1, 00:09:37
+     2.0.0.0/32 is subnetted, 1 subnets
+B       2.2.2.2 [20/0] via 172.16.4.1, 00:09:37
+     3.0.0.0/32 is subnetted, 1 subnets
+B       3.3.3.3 [20/20] via 172.16.4.1, 00:10:06
+     4.0.0.0/32 is subnetted, 1 subnets
+B       4.4.4.4 [200/0] via 192.168.0.129, 00:09:57
+     5.0.0.0/32 is subnetted, 1 subnets
+C       5.5.5.5 is directly connected, Loopback0
+     6.0.0.0/32 is subnetted, 1 subnets
+B       6.6.6.6 [20/0] via 10.0.2.3, 00:09:35
+     172.16.0.0/28 is subnetted, 4 subnets
+C       172.16.4.0 is directly connected, GigabitEthernet6/0
+B       172.16.1.0 [200/0] via 192.168.0.129, 00:09:57
+C       172.16.2.0 is directly connected, GigabitEthernet5/0
+B       172.16.3.0 [200/0] via 192.168.0.129, 00:09:57
+     7.0.0.0/32 is subnetted, 1 subnets
+B       7.7.7.7 [20/0] via 10.0.2.3, 00:09:35
+     10.0.0.0/29 is subnetted, 2 subnets
+C       10.0.2.0 is directly connected, FastEthernet3/0
+B       10.0.1.0 [200/0] via 192.168.0.129, 00:09:57
+     192.168.0.0/25 is subnetted, 2 subnets
+B       192.168.0.0 [20/0] via 172.16.4.1, 00:09:37
+C       192.168.0.128 is directly connected, FastEthernet0/0
+B    192.168.1.0/24 [20/0] via 172.16.2.1, 00:10:03
+B    192.168.2.0/24 [20/0] via 172.16.4.1, 00:09:37
+WAN02#show ntp associations
+
+      address         ref clock     st  when  poll reach  delay  offset    disp
++~4.4.4.4          .LOCL.            1    30    64  377    23.9   24.00    22.7
+*~127.127.7.1      .LOCL.            0    56    64  377     0.0    0.00     0.0
+ * master (synced), # master (unsynced), + selected, - candidate, ~ configured
+WAN02#
