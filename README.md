@@ -51,6 +51,10 @@ To solve this problem, I developed a Python-based tool that automatically parses
 
 <img width="1248" height="578" alt="status_1" src="https://github.com/user-attachments/assets/2db55ca7-a26b-48b0-83b3-a095046e7510" />
 
+please refer to:
+
+- sample_output/result.xlsx
+
 ## Technical Details
 
 - Developed as a Windows GUI application using `tkinter`.
