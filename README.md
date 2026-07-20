@@ -30,13 +30,15 @@ To solve this problem, I developed a Python-based tool that automatically parses
 
 ## Environment
 
-Python 3.x
+- Windows
+- Python 3.x
 
-Windows
+## Technologies
 
-openpyxl
-
-tkinter
+- Python
+- tkinter
+- openpyxl
+- Regular Expressions
 
 ## How to use
 1. Execute commands on Cisco routers.
