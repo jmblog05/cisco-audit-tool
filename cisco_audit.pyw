@@ -544,8 +544,8 @@ def select_directory():
                             no_passive_list = []
                             no_passive_count = 0
                             ospf_nei_count = 0
-                            ospf_nei = "" #初期化
-                            ospf_nei_state = "" #初期化
+                            ospf_nei = "" #initialize
+                            ospf_nei_state = "" #initialize
                             ospf_indexes = [x for x, y in enumerate(lines) if y == "ospf"]
                             for q in range(len(ospf_indexes)):
                                 if lines[ospf_indexes[q]-1] == "router":
@@ -632,9 +632,9 @@ def select_directory():
                             router_bgp_count = 0
                             bgp_nei_list = []
                             bgp_nei_count = 0
-                            my_as = "" #初期化
-                            remote_as = "" #初期化
-                            prefix_no = "" #初期化
+                            my_as = "" #initialize
+                            remote_as = "" #initialize
+                            prefix_no = "" #initialize
                             bgp_state_list = ["Idle", "Active", "Connect", "OpenSent","OpenConfirm"]
                             bgp_indexes = [x for x, y in enumerate(lines) if y == "bgp"]
                             for q in range(len(bgp_indexes)):
