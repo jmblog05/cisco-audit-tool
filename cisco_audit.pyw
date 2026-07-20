@@ -73,16 +73,16 @@ def initial_screen():
     s.configure('MyWidget.TButton', background='royalblue', foreground='lightgreen',font = (u'', 14,"bold"))
     s.configure('MyWidget2.TButton', background='skyblue', foreground='purple',font = (u'', 14,"bold"))
 
-    label1 = tk.Label(frame, justify="center",text='Step1: Get the following command outputs by CLI and then save the log file into a directory.             ',foreground="olive",font= ('',14,"bold")) 
+    label1 = tk.Label(frame, justify="center",text='STEP1: Get "show command" outputs using CLI then save log files to a directory.             ',foreground="olive",font= ('',14,"bold")) 
     label1.grid(row=0, column=0,sticky=tk.W)
 
-    button_1 = ttk.Button(frame, style='MyWidget.TButton', text="Show the command list",command=lambda:[cmd_list()])
+    button_1 = ttk.Button(frame, style='MyWidget.TButton', text="Command list",command=lambda:[cmd_list()])
     button_1.grid(row=1, column=0,sticky=tk.W)  
 
-    label1 = tk.Label(frame, justify="center",text='Step2: Select the log file directory.             ',foreground="olive",font= ('',14,"bold")) 
+    label1 = tk.Label(frame, justify="center",text='STEP2: Select the log file directory.             ',foreground="olive",font= ('',14,"bold")) 
     label1.grid(row=2, column=0,sticky=tk.W)
 
-    button_1 = ttk.Button(frame, style='MyWidget.TButton', text="Select the log directory",command=lambda:[select_directory()])
+    button_1 = ttk.Button(frame, style='MyWidget.TButton', text="Select directory",command=lambda:[select_directory()])
     button_1.grid(row=3, column=0,sticky=tk.W)  
 
     result_label = tk.Label(frame, justify="center",textvariable=log_directory,foreground="red",font= ('red',14,"")) 
