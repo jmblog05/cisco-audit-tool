@@ -61,6 +61,18 @@ To solve this problem, I developed a Python-based tool that automatically parses
 - Support more Cisco commands
 - AI-powered log analysis using LangChain
 
+## Documentation
+
+For more details about the project design and implementation, please refer to:
+
+- docs/Self-made_Python_script_presentation.pdf
+
+## Sample Data
+
+Sample Cisco CLI logs collected from a GNS3 lab are included in the `sample_logs` directory.
+
+These logs can be used to test the application without requiring access to actual Cisco devices.
+
 ## Author
 
 Created by jmblog05
